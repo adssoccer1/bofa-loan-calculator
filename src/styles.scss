@@ -1,0 +1,14 @@
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-toolbar { font-weight: 500; }
+.mat-card { border-radius: 8px !important; }
+.mat-form-field { width: 100%; }
+.mat-header-cell { font-weight: 600; color: #333; }
+
+:root {
+  --bofa-primary: #012169;
+  --bofa-secondary: #e31837;
+}

@@ -1,0 +1,29 @@
+<div class="summary-grid" *ngIf="summary">
+  <mat-card class="summary-card primary-card">
+    <mat-card-content>
+      <div class="summary-label">Monthly Payment</div>
+      <div class="summary-value primary">{{ summary.monthlyPayment | currency }}</div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="summary-card">
+    <mat-card-content>
+      <div class="summary-label">Total Payment</div>
+      <div class="summary-value">{{ summary.totalPayment | currency }}</div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="summary-card">
+    <mat-card-content>
+      <div class="summary-label">Total Interest</div>
+      <div class="summary-value interest">{{ summary.totalInterest | currency }}</div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="summary-card">
+    <mat-card-content>
+      <div class="summary-label">Loan Principal</div>
+      <div class="summary-value">{{ summary.principal | currency }}</div>
+    </mat-card-content>
+  </mat-card>
+</div>

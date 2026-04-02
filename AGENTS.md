@@ -1,0 +1,1 @@
+This Angular 14 application needs to be upgraded to Angular 18. Follow the Angular update guide at https://angular.dev/update-guide. Upgrade one major version at a time. Run tests after each upgrade step.

@@ -1,0 +1,59 @@
+<div class="calculator-container">
+  <h2>Loan Calculator</h2>
+  <p class="description">Estimate your monthly payment and view a full amortization schedule.</p>
+
+  <mat-card class="form-card">
+    <mat-card-header>
+      <mat-card-title>Loan Details</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="loanForm" class="loan-form">
+        <mat-form-field appearance="outline">
+          <mat-label>Loan Type</mat-label>
+          <mat-select formControlName="loanType">
+            <mat-option *ngFor="let type of loanTypes" [value]="type.value">
+              {{ type.label }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Loan Amount</mat-label>
+          <span matPrefix>$&nbsp;</span>
+          <input matInput type="number" formControlName="principal">
+          <mat-error *ngIf="loanForm.get('principal')?.hasError('min')">Minimum $1,000</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Annual Interest Rate</mat-label>
+          <input matInput type="number" formControlName="annualRate" step="0.1">
+          <span matSuffix>%</span>
+          <mat-error *ngIf="loanForm.get('annualRate')?.hasError('max')">Maximum 30%</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Loan Term</mat-label>
+          <input matInput type="number" formControlName="termYears">
+          <span matSuffix>years</span>
+          <mat-error *ngIf="loanForm.get('termYears')?.hasError('max')">Maximum 40 years</mat-error>
+        </mat-form-field>
+
+        <div class="form-actions">
+          <button mat-raised-button color="primary" (click)="calculate()" [disabled]="loanForm.invalid">
+            <mat-icon>calculate</mat-icon> Calculate
+          </button>
+          <button mat-button (click)="reset()">
+            <mat-icon>refresh</mat-icon> Reset
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <div *ngIf="hasCalculated && summary">
+    <app-loan-summary [summary]="summary"></app-loan-summary>
+
+    <h3>Amortization Schedule</h3>
+    <app-amortization-table [schedule]="schedule"></app-amortization-table>
+  </div>
+</div>
